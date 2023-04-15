@@ -789,6 +789,12 @@ textarea:focus {
         /* second-plan  */
        opacity: 0.5;
     }
+    .sucess-section button{
+        /* background shade */
+         position: absolute;
+         bottom: 8%;
+        
+    }
 }
 
 
@@ -805,8 +811,7 @@ textarea:focus {
     color: var(--secondary-color);
     background-color: var(--primary-color);
     border-radius: 6px;
-    padding-left: 10px;
-    padding-right: 10px;
+   
 }
 
 .sucess-section p {
