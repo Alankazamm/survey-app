@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    
-    <link rel="icon" href="/assets/favicon-9e509a33.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/resset.css">
+    <link rel="stylesheet" href="./styles/generalvars.css">
+    <link rel="icon" href="./images/favicon.png" type="image/png" sizes="32x32">
     
      <!-- update the version number as needed -->
      <script defer src="/__/firebase/9.19.1/firebase-app-compat.js"></script>
@@ -28,15 +28,13 @@
      <script defer src="/__/firebase/init.js?useEmulator=true"></script>
      
     <title>Survey Form</title>
-  <script type="module" crossorigin src="/assets/index-3093c7fc.js"></script>
-  <link rel="stylesheet" href="/assets/index-dbb6086d.css">
 </head>
 
 <body>
     <main class="survey-form">
         <!-- toggle theme button -->
         <span class="toggle-theme light"  >
-            <img src="/assets/sun-5c10cc79.svg" alt="sun icon" />
+            <img src="./images/sun.svg" alt="sun icon" />
         </span>
         <!-- invalid form modal -->
         <div id="invalid-form-modal">
@@ -51,7 +49,7 @@
 
         <section class="page welcome-section">
             <div class="img-section">
-                <img src="/assets/zero-de653be7.svg" id="img-zero" alt="" />
+                <img src="./images/zero.svg" id="img-zero" alt="" />
             </div>
             <div class="content-section">
                 <div class="text-section">
@@ -70,7 +68,7 @@
 
         <section class="page start-section">
             <div class="img-section">
-                <img src="/assets/one-e95daf33.svg" alt="" />
+                <img src="./images/one.svg" alt="" />
             </div>
             <div class="content-section">
                 <div class="text-section">
@@ -90,7 +88,7 @@
 
         <section class="page status-section">
             <div class="img-section">
-                <img src="/assets/two-058da3df.svg" alt="" />
+                <img src="./images/two.svg" alt="" />
             </div>
             <div class="content-section">
                 <form class="survey-form">
@@ -137,7 +135,7 @@
 
         <section class="page invest-section">
             <div class="img-section">
-                <img src="/assets/three-8818ab26.svg" alt="" />
+                <img src="./images/three.svg" alt="" />
             </div>
             <div class="content-section">
                 <form class="survey-form">
@@ -182,7 +180,7 @@
 
         <section class="page details-section">
             <div class="img-section">
-                <img src="/assets/four-5de4368f.svg" alt="" />
+                <img src="./images/four.svg" alt="" />
             </div>
             <div class="content-section">
                 <form class="survey-form">
@@ -206,7 +204,7 @@
 
         <section class="page contact-section">
             <div class="img-section">
-                <img src="/assets/five-99ca83b0.svg" alt="" />
+                <img src="./images/five.svg" alt="" />
             </div>
             <div class="content-section">
                 <form class="survey-form">
@@ -226,7 +224,7 @@
 
         <section class="page sucess-section">
             <div class="img-section">
-                <img src="/assets/four-5de4368f.svg" alt="" />
+                <img src="./images/four.svg" alt="" />
             </div>
             <div class="content-section">
                 <div class="infosDiv">
@@ -309,14 +307,14 @@
         }
       });
     </script>
-    
-    
-    
-    
-    
-    
-    
-    
+    <script type="module" src="./scripts/navigation/navigation.js"></script>
+    <script type="module" src="./scripts/navigation/navEvents.js" ></script>
+    <script type="module" src="./scripts/validators/validators.js"></script>
+    <script type="module" src="./scripts/input-listeners/focusRemoveIndicators.js"></script>
+    <script type="module" src="./scripts/input-listeners/textAreaCounter.js"></script>
+    <script type="module" src="./scripts/data-handlers/filledInfos.js"></script>
+    <script type="module" src="./scripts/theme/iconListener.js"></script>
+    <script type="module" src="./scripts/modal/buttonListener.js"></script>
 </body>
 
 </html>
