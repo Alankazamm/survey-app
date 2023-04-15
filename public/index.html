@@ -7,17 +7,49 @@
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="./styles/resset.css">
     <link rel="stylesheet" href="./styles/generalvars.css">
-    <link rel="icon" href="./images/favicon.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="../images/favicon.png" type="image/png" sizes="32x32">
     
+     <!-- update the version number as needed -->
+     <script defer src="/__/firebase/9.19.1/firebase-app-compat.js"></script>
+     <!-- include only the Firebase features as you need -->
+     <script defer src="/__/firebase/9.19.1/firebase-auth-compat.js"></script>
+     <script defer src="/__/firebase/9.19.1/firebase-database-compat.js"></script>
+     <script defer src="/__/firebase/9.19.1/firebase-firestore-compat.js"></script>
+     <script defer src="/__/firebase/9.19.1/firebase-functions-compat.js"></script>
+     <script defer src="/__/firebase/9.19.1/firebase-messaging-compat.js"></script>
+     <script defer src="/__/firebase/9.19.1/firebase-storage-compat.js"></script>
+     <script defer src="/__/firebase/9.19.1/firebase-analytics-compat.js"></script>
+     <script defer src="/__/firebase/9.19.1/firebase-remote-config-compat.js"></script>
+     <script defer src="/__/firebase/9.19.1/firebase-performance-compat.js"></script>
+     <!-- 
+       initialize the SDK after all desired features are loaded, set useEmulator to false
+       to avoid connecting the SDK to running emulators.
+     -->
+     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+     
     <title>Survey Form</title>
 </head>
 
 <body>
     <main class="survey-form">
+        <!-- toggle theme button -->
+        <span class="toggle-theme light"  >
+            <img src="../images/sun.svg" alt="sun icon" />
+        </span>
+        <!-- invalid form modal -->
+        <div id="invalid-form-modal">
+            <h2>Invalid form input!</h2>
+            <p>Please, fill the needed form properly or click the skip button.</p>
+            <button id="close-modal">Close</button>
+        </div>
+        <!-- overlay -->
+        <div id="overlay">
+
+        </div>
 
         <section class="page welcome-section">
             <div class="img-section">
-                <img src="./images/zero.svg" id="img-zero" alt="" />
+                <img src="../images/zero.svg" id="img-zero" alt="" />
             </div>
             <div class="content-section">
                 <div class="text-section">
@@ -36,7 +68,7 @@
 
         <section class="page start-section">
             <div class="img-section">
-                <img src="./images/one.svg" alt="" />
+                <img src="../images/one.svg" alt="" />
             </div>
             <div class="content-section">
                 <div class="text-section">
@@ -56,7 +88,7 @@
 
         <section class="page status-section">
             <div class="img-section">
-                <img src="./images/two.svg" alt="" />
+                <img src=".../images/two.svg" alt="" />
             </div>
             <div class="content-section">
                 <form class="survey-form">
@@ -70,7 +102,7 @@
                         <div class="pointer"></div>
                     </div>
 
-                    <div class="mult">
+                    <div class="mult" id="radioInputs">
                         <p class="input-label">In which financial markets do you operate?</p>
 
                         <div class="input-wrapper">
@@ -103,7 +135,7 @@
 
         <section class="page invest-section">
             <div class="img-section">
-                <img src="./images/three.svg" alt="" />
+                <img src="../images/three.svg" alt="" />
             </div>
             <div class="content-section">
                 <form class="survey-form">
@@ -117,7 +149,7 @@
                         <div class="pointer"></div>
                     </div>
 
-                    <div class="mult">
+                    <div class="mult" id="checkboxInputs">
                         <p class="input-label">What resources have you used or are you using for your training?</p>
 
                         <div class="input-wrapper">
@@ -148,7 +180,7 @@
 
         <section class="page details-section">
             <div class="img-section">
-                <img src="./images/four.svg" alt="" />
+                <img src="../images/four.svg" alt="" />
             </div>
             <div class="content-section">
                 <form class="survey-form">
@@ -157,8 +189,8 @@
                         write down the details
                     </label>
                     <div class="textarea-div">
-                        <textarea name="details-textarea" id="details-textarea"></textarea>
-                        <span class="words-handler"></span>
+                        <textarea name="details-textarea" id="details-textarea" maxlength="130"></textarea>
+                        <span id="count-displayer"></span>
                     </div>
 
                 </form>
@@ -172,7 +204,7 @@
 
         <section class="page contact-section">
             <div class="img-section">
-                <img src="./images/five.svg" alt="" />
+                <img src="../images/five.svg" alt="" />
             </div>
             <div class="content-section">
                 <form class="survey-form">
@@ -192,7 +224,7 @@
 
         <section class="page sucess-section">
             <div class="img-section">
-                <img src="./images/four.svg" alt="" />
+                <img src="../images/four.svg" alt="" />
             </div>
             <div class="content-section">
                 <div class="infosDiv">
@@ -237,10 +269,52 @@
         </section>
 
     </main>
-    <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/navEvents.js" ></script>
-    <script type="module" src="./scripts/validators.js"></script>
-    <script type="module" src="./scripts/filledInfos.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = [
+            'auth', 
+            'database', 
+            'firestore',
+            'functions',
+            'messaging', 
+            'storage', 
+            'analytics', 
+            'remoteConfig',
+            'performance',
+          ].filter(feature => typeof app[feature] === 'function');
+          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+    <script type="module" src="../scripts/navigation/navigation.js"></script>
+    <script type="module" src="../scripts/navigation/navEvents.js" ></script>
+    <script type="module" src="../scripts/validators/validators.js"></script>
+    <script type="module" src="../scripts/input-listeners/focusRemoveIndicators.js"></script>
+    <script type="module" src="../scripts/input-listeners/textAreaCounter.js"></script>
+    <script type="module" src="../scripts/data-handlers/filledInfos.js"></script>
+    <script type="module" src="../scripts/theme/iconListener.js"></script>
+    <script type="module" src="../scripts/modal/buttonListener.js"></script>
 </body>
 
 </html>

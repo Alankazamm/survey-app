@@ -1,4 +1,4 @@
-export const pages = [
+const pages = [
     document.querySelector('.welcome-section'),
     document.querySelector('.start-section'),
     document.querySelector('.status-section'),
@@ -7,7 +7,7 @@ export const pages = [
     document.querySelector('.contact-section'),
     document.querySelector('.sucess-section')
 ];
-export const [welcome, start, statuspage, invest, details, contact, sucess] = pages;
+const [welcome, start, statuspage, invest, details, contact, sucess] = pages;
 const navigate = (page) => {
     switch (page) {
         case 'welcome':

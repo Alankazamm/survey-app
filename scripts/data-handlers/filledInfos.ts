@@ -1,4 +1,4 @@
-import navigate from "./index";
+import navigate from "../navigation/navigation";
 
 export interface Infos {
     name: string;

@@ -1,10 +1,9 @@
 // dom manipulation:
 // const infosUl = document.createElement('ul');
 // const infoItem = document.createElement('li');
- const itemDivs = document.querySelectorAll('.infoItem');
-export let filledForm = [];
+const itemDivs = document.querySelectorAll('.infoItem');
+let filledForm = [];
 export const createForm = (infos) => {
-    var _a;
     filledForm = [];
     filledForm.push(infos.name);
     filledForm.push(infos.email);
@@ -52,7 +51,7 @@ export const createForm = (infos) => {
             break;
     }
     let arrCheckeds = [];
-    (_a = infos.resources) === null || _a === void 0 ? void 0 : _a.forEach(resource => {
+    infos.resources?.forEach(resource => {
         switch (resource) {
             case 'books':
                 arrCheckeds.push('Books and articles');
@@ -82,13 +81,11 @@ export const createForm = (infos) => {
         //     infosUl.appendChild(infoItem);
         // })
     });
-    // fazer um forEach no itemDiv pra colocar cara domized dentro do respectivo
-    // que tera o titulo em tag estática + item convertido em li
-     itemDivs.forEach((div, index) => {
-         domizedValues.forEach((value, i) => {
+    itemDivs.forEach((div, index) => {
+        domizedValues.forEach((value, i) => {
             if (i === index) {
                 div.innerHTML = value;
-             }
-         });
-     });
+            }
+        });
+    });
 };

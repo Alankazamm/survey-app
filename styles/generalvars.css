@@ -14,7 +14,12 @@
     --primary-color: rgba(62, 178, 94, 1);
     --secondary-color: white;
     --unselected-color: rgba(62, 178, 94, 0.3);
+    --selected-color: rgba(62, 178, 94, 1);
     --grey-input-color: rgba(0, 0, 0, 0.25);
+
+    /* text colors */
+    --primary-text-color: black;
+    --secondary-text-color: white;
 
     /* buttons */
     --btn-radius: 35px;
