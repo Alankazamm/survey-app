@@ -1,6 +1,8 @@
 import { getSurveys } from "../../../firebaseFunctions/app";
 import { overlay, surveyModal, surveyModalEmail, surveyModalText, surveySubmit } from "../modal";
 const surveyIcon = document.querySelector('.surveys-icon');
+const resultDiv = document.getElementById('result');
+const submissionDiv = document.getElementById('submission');
 export const showModal = () => {
     if (overlay.style.display === 'block' && surveyModal.style.display === 'flex') {
         overlay.style.display = 'none';
@@ -16,7 +18,11 @@ const showSurveys = (surveys) => {
         return;
     }
     else {
-        surveyModal.innerHTML = `
+        submissionDiv.style.display = 'none';
+        resultDiv.innerHTML = `
+        <span id="reset-modal-icon">
+            <img src="./images/spinner-dark.svg" alt="close icon" />
+        </span>
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Surveys</h2>
@@ -38,6 +44,19 @@ const showSurveys = (surveys) => {
                     `;
         }).join('')}
         </div>`;
+        resultDiv.style.display = 'block';
+        const resetModalIcon = document.getElementById('reset-modal-icon');
+        resetModalIcon?.addEventListener('click', () => {
+            console.log('clicked');
+            // set animation style atribute to image when clicked
+            resetModalIcon?.querySelector('img')?.setAttribute('style', 'animation: spin 1s infinite linear ;');
+            //timeout to reset animation
+            setTimeout(() => {
+                resetModalIcon?.querySelector('img')?.setAttribute('style', 'animation: none');
+                submissionDiv.style.display = 'flex';
+                resultDiv.style.display = 'none';
+            }, 1000);
+        });
     }
 };
 surveyIcon?.addEventListener('click', () => {

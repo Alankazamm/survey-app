@@ -38,6 +38,7 @@
         </div>
         <!-- see surveys modal -->
         <div id="see-surveys-modal">
+           <div class="modal-content" id="submission">
             <h2>See surveys</h2>
             <p id="survey-modal-text">
                 Do you want to see the surveys you have already filled out?
@@ -47,6 +48,9 @@
                 <input type="email" name="email" id="survey-email" placeholder="Enter your email" />
                 <button type="button" id="submit-survey-email">Submit</button>
             </form>
+           </div>
+           <div class="modal-content" id="result"></div>
+            
         </div>
        
 
@@ -281,7 +285,8 @@
     <script type="module" src="./scripts/data-handlers/filledInfos.js"></script>
     <script type="module" src="./scripts/theme/iconListener.js"></script>
     <script type="module" src="./scripts/modals/error-modal/buttonListener.js"></script>
-    <script type="module" src="./scripts/modals/surveys/surveyIconListener.js" defer></script>
+    <script type="module" src="./scripts/modals/surveys/surveyIconListener.js"></script>
+    <!-- <script type="module" src="./scripts/modals/surveys/resetModal.js" ></script> -->
     <script type="module" src="./scripts/modals/modal.ts"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
