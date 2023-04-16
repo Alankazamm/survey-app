@@ -13,6 +13,24 @@ body {
     cursor: pointer;
     z-index:100;    
 }
+
+/* animation for icon to get bigger then smaller when hovering over it */
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.toggle-theme:hover{
+    /* set the animation smoothly */
+    animation: scale  1.6s ease-in-out;
+}
+
 .toggle-theme img{
     pointer-events: none;
     width: 5vh;

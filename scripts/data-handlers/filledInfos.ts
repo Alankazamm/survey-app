@@ -1,4 +1,6 @@
 import navigate from "../navigation/navigation";
+import { storeSurvey } from '../../firebaseFunctions/app';
+import { treatedFormToUpload } from "./treatedFormToUpload";
 
 export interface Infos {
     name: string;
@@ -88,7 +90,7 @@ export const createForm = (infos: Infos) => {
     arrCheckeds.length >0? filledForm.push(arrCheckeds):filledForm.push('not answered');
     infos.details!.length > 0 ? filledForm.push(infos.details!) : filledForm.push('Not filled');
 
-    
+    storeSurvey(treatedFormToUpload(filledForm));
     const domizedValues: string[] = filledForm.map((item):string => {
         if (!Array.isArray(item)) return `<p>${item}</p>`
         else

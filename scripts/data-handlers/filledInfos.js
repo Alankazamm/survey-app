@@ -1,3 +1,5 @@
+import { storeSurvey } from '../../firebaseFunctions/app';
+import { treatedFormToUpload } from "./treatedFormToUpload";
 // dom manipulation:
 // const infosUl = document.createElement('ul');
 // const infoItem = document.createElement('li');
@@ -69,6 +71,7 @@ export const createForm = (infos) => {
     });
     arrCheckeds.length > 0 ? filledForm.push(arrCheckeds) : filledForm.push('not answered');
     infos.details.length > 0 ? filledForm.push(infos.details) : filledForm.push('Not filled');
+    storeSurvey(treatedFormToUpload(filledForm));
     const domizedValues = filledForm.map((item) => {
         if (!Array.isArray(item))
             return `<p>${item}</p>`;
