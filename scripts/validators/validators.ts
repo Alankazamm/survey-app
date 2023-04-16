@@ -1,5 +1,5 @@
 import { createForm, Infos } from "../data-handlers/filledInfos";
-import { mountModal } from "../modal/modalEvents";
+import { mountModal } from "../modals/error-modal/modalEvents";
 import navigate from "../navigation/navigation";
 import { errorIndicators, errorsInputs } from "./errorIndicators";
 type input = HTMLInputElement | null;

@@ -16,15 +16,19 @@
 
 <body>
     <main class="survey-form">
+         <!-- overlay -->
+         <div id="overlay">
+
+         </div>
         <div class="icons">
             <!-- toggle theme button -->
             <span class="toggle-theme light">
                 <img src="./images/sun.svg" alt="sun icon" />
             </span>
             <!-- surveys icon -->
-            <div class="surveys-icon">
+            <span class="surveys-icon">
                 <img src="./images/survey-light.svg" alt="surveys icon" />
-            </div>
+            </span>
         </div>
         <!-- invalid form modal -->
         <div id="invalid-form-modal">
@@ -32,10 +36,19 @@
             <p>Please, fill the needed form properly or click the skip button.</p>
             <button id="close-modal">Close</button>
         </div>
-        <!-- overlay -->
-        <div id="overlay">
-
+        <!-- see surveys modal -->
+        <div id="see-surveys-modal">
+            <h2>See surveys</h2>
+            <p id="survey-modal-text">
+                Do you want to see the surveys you have already filled out?
+                Enter your email to see the previous surveys you have filled out.
+            </p>
+            <form id="see-surveys-form">
+                <input type="email" name="email" id="survey-email" placeholder="Enter your email" />
+                <button type="button" id="submit-survey-email">Submit</button>
+            </form>
         </div>
+       
 
         <section class="page welcome-section">
             <div class="img-section">
@@ -267,7 +280,9 @@
     <script type="module" src="./scripts/input-listeners/textAreaCounter.js"></script>
     <script type="module" src="./scripts/data-handlers/filledInfos.js"></script>
     <script type="module" src="./scripts/theme/iconListener.js"></script>
-    <script type="module" src="./scripts/modal/buttonListener.js"></script>
+    <script type="module" src="./scripts/modals/error-modal/buttonListener.js"></script>
+    <script type="module" src="./scripts/modals/surveys/surveyIconListener.js" defer></script>
+    <script type="module" src="./scripts/modals/modal.ts"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </body>

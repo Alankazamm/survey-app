@@ -16,12 +16,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    
     gap: 10px;
-
 }
-
-
 /* animation for icon to get bigger then smaller when hovering over it */
 @keyframes scale {
     0% {
@@ -34,6 +30,9 @@ body {
         transform: scale(1);
     }
 }
+.toggle-theme{
+    cursor: pointer;
+}
 .toggle-theme:hover{
     /* set the animation smoothly */
     animation: scale  1.6s ease-in-out;
@@ -43,15 +42,21 @@ body {
     /* set the animation smoothly */
     animation: scale  1.6s ease-in-out;
 }
+.surveys-icon{
+    cursor: pointer;
+}
 .surveys-icon img{
     width: 7vh;
     height: 7vh;
+    cursor: pointer;
+    pointer-events: none;
 }
 
 .toggle-theme img{
     pointer-events: none;
     width: 5vh;
     height: 5vh;
+    
 }
 
 /* invalid form modal */
@@ -121,6 +126,188 @@ body {
      }
 }
 
+/* see surveys modal */
+#see-surveys-modal{
+    position: absolute;
+    top:20%;
+    left:35%;
+    width: 40vw;
+    height:30vw;
+    max-height:70vh;
+    border:1px solid rgba(0, 0, 0, 0.5);
+    z-index:100;
+    background-color: var(--primary-color);
+    color: var(--secondary-text-color);
+    border-radius: 20px;
+    display:none;
+    flex-direction: column;
+    /* align-items:center; */
+    justify-content:space-evenly;
+    box-shadow: 11px 11px 1px rgba(0,0,0,0.2);
+    overflow-y:scroll;
+}
+#see-surveys-modal::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+#see-surveys-modal::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+#see-surveys-modal .modal-content{
+    color: var(--secondary-color);
+    margin-top:2px;
+    padding-top:10px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    height:100%;
+    width:96%;
+    overflow-x:hidden;
+}
+#see-surveys-modal .survey{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-evenly;
+    width:98%;
+    height:fit-content;
+    border-bottom:1px solid rgba(0, 0, 0, 0.5);
+    padding-bottom:10px;
+    padding-top:10px;
+    margin-left:10px;
+    margin-right:10px;
+    overflow:hidden;
+
+}
+#see-surveys-modal .survey > p{
+    margin-top:10px;
+    width:100%;
+    text-align:start;
+    background-color: var(--secondary-color);
+    border-radius: 7px;
+    padding:5px;
+    color: var(--primary-color);
+    font-weight: var(--font-weight-bold);
+}
+#see-surveys-modal .survey div{
+    display:flex;
+    margin-top:10px;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-evenly;
+    width:100%;
+    height:fit-content;
+    gap:10px;
+    background-color: var(--secondary-color);
+    border-radius: 7px;
+    color: var(--primary-color);
+    font-weight: var(--font-weight-bold);
+    font-size: 12px;
+}
+#see-surveys-modal .survey div p{
+    margin-top:5px;
+}
+#see-surveys-modal h2{
+    margin-top:30px;
+    text-align:center;
+}
+#see-surveys-modal p{
+    text-align:center;
+    margin-top:40px;
+    width:90%;
+}
+#see-surveys-modal form{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-evenly;
+    height:100%;
+    width:100%;
+}
+#see-surveys-modal button{
+    text-align:center;
+    background-color: var(--secondary-color);
+    color: var(--primary-text-color);
+    font-size: var(--btn-dsk-fsize);
+    font-weight: var(--font-weight-bold);
+    border-radius: var(--btn-radius);
+    border: none;
+    cursor: pointer;
+    height:30px;
+    width: 45%;
+}
+#see-surveys-modal button:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+}
+#see-surveys-modal input{
+    text-align:center;
+    margin-top:20px;
+    margin-bottom:20px;
+    background-color: var(--secondary-color);
+    color: var(--primary-text-color);
+    font-size: var(--btn-dsk-fsize);
+    font-weight: var(--font-weight-bold);
+    border-radius: var(--btn-radius);
+    border: 1px solid var(--secondary-color);
+    cursor: pointer;
+    height: var(--btn-dsk-height);
+    width: 90%;
+}
+@media screen and (max-width: 768px) {
+    #see-surveys-modal{
+        width:90vw;
+        left:5vw;
+        min-height:fit-content;
+        height:fit-content;
+        box-shadow: 6px 7px 1px rgba(0,0,0,0.2);
+
+    }
+    #see-surveys-modal button{
+        width:40%;
+        height:20px;
+        margin-bottom:10px;
+        font-size:14px;
+    }
+    #see-surveys-modal input{
+        width:80%;
+        height:20px;
+        margin-bottom:10px;
+        font-size:14px;
+    }
+    #see-surveys-modal .survey{
+        margin-left:5px;
+        margin-right:5px;
+
+    }
+    #see-surveys-modal .survey p{
+        margin-top:5px;
+        width:90%;
+    }
+    #see-surveys-modal .survey div{
+        gap:5px;
+        flex-direction:column;
+        width:90%;
+        margin-top:5px;
+        
+    }
+    #see-surveys-modal h2{
+        margin-top:10px;
+    }
+    #see-surveys-modal p{
+        margin-top:10px;
+    }
+
+}
+@media screen and (min-height: 768px) {
+    #see-surveys-modal p{
+       font-size:28px;
+    }
+    #see-surveys-modal h2{
+        font-size:42px;
+     }
+}
 /* overlay */
 #overlay{
     position:absolute;

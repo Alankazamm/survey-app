@@ -1,7 +1,7 @@
 import { toggleThemeIcon } from "./themeHandler";
+export const surveyIcon = document.querySelector('.surveys-icon')?.querySelector('img');
+export const themeIcon = toggleThemeIcon?.querySelector('img');
 export const iconChanger = ((theme) => {
-    const surveyIcon = document.querySelector('.surveys-icon')?.querySelector('img');
-    const themeIcon = toggleThemeIcon?.querySelector('img');
     if (theme === 'light') {
         surveyIcon.src = './images/survey-light.svg';
         surveyIcon.alt = 'light view survey icon';

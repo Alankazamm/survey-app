@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+const firebaseKey = import.meta.env.VITE_FIREBASE_KEY;
 const firebaseConfig = {
-    apiKey: "AIzaSyDVukLd9kYt8ZdMlFABDu027nIHQSI7P9U",
+    apiKey: firebaseKey,
     authDomain: "survey-app-64e6f.firebaseapp.com",
     projectId: "survey-app-64e6f",
     storageBucket: "survey-app-64e6f.appspot.com",
@@ -22,16 +23,12 @@ export const storeSurvey = async (survey) => {
 };
 export const getSurveys = async (email) => {
     let surveys = [];
-    const querySnapshot = await getDocs(collection(db, "surveys"));
-    try {
+    const querySnapshot = await getDocs(collection(db, "surveys")).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             if (doc.data().email === email) {
                 surveys.push(doc.data());
             }
         });
-        return surveys;
-    }
-    catch (e) {
-        alert(e);
-    }
+    });
+    return surveys;
 };
