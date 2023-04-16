@@ -8,18 +8,24 @@
     <link rel="stylesheet" href="./styles/resset.css">
     <link rel="stylesheet" href="./styles/generalvars.css">
     <link rel="icon" href="./images/favicon.png" type="image/png" sizes="32x32">
-    
-    
-     
+
+
+
     <title>Survey Form</title>
 </head>
 
 <body>
     <main class="survey-form">
-        <!-- toggle theme button -->
-        <span class="toggle-theme light"  >
-            <img src="./images/sun.svg" alt="sun icon" />
-        </span>
+        <div class="icons">
+            <!-- toggle theme button -->
+            <span class="toggle-theme light">
+                <img src="./images/sun.svg" alt="sun icon" />
+            </span>
+            <!-- surveys icon -->
+            <div class="surveys-icon">
+                <img src="./images/survey-light.svg" alt="surveys icon" />
+            </div>
+        </div>
         <!-- invalid form modal -->
         <div id="invalid-form-modal">
             <h2>Invalid form input!</h2>
@@ -243,19 +249,19 @@
                     <div class="info">
                         <span class="info-text">Details: </span>
                         <div class="infoItem">
+                        </div>
                     </div>
+
                 </div>
-                
-            </div>
-            <div class="buttons-wrapper">
-                <button class="btn skip-button">Back to Home</button>
-            </div>
+                <div class="buttons-wrapper">
+                    <button class="btn skip-button">Back to Home</button>
+                </div>
         </section>
 
     </main>
-    
+
     <script type="module" src="./scripts/navigation/navigation.js"></script>
-    <script type="module" src="./scripts/navigation/navEvents.js" ></script>
+    <script type="module" src="./scripts/navigation/navEvents.js"></script>
     <script type="module" src="./scripts/validators/validators.js"></script>
     <script type="module" src="./scripts/input-listeners/focusRemoveIndicators.js"></script>
     <script type="module" src="./scripts/input-listeners/textAreaCounter.js"></script>

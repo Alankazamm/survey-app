@@ -1,17 +1,15 @@
+import { iconChanger } from './iconChanger';
 import { toggleThemeClass, toggleThemeIcon } from './themeHandler';
 import { toggleTheme } from './toggleTheme';
 const classChangeListener = new MutationObserver((mutationsList) => {
     for (let mutation of mutationsList) {
         if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-            const image = toggleThemeIcon?.querySelector('img');
             if (toggleThemeIcon.classList.contains('light')) {
-                image.src = './images/sun.svg';
-                image.alt = 'light theme sun icon';
+                iconChanger('light');
                 toggleTheme('light');
             }
             else {
-                image.src = './images/moon.svg';
-                image.alt = 'dark theme moon icon';
+                iconChanger('dark');
                 toggleTheme('dark');
             }
         }
