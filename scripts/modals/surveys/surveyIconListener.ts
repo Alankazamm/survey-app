@@ -1,4 +1,6 @@
 import { getSurveys } from "../../../firebaseFunctions/app";
+import { iconChanger } from "../../theme/iconChanger";
+import { toggleThemeIcon } from "../../theme/themeHandler";
 import { hideModal } from "../error-modal/modalEvents";
 import { overlay, surveyModal, surveyModalEmail, surveyModalText, surveySubmit } from "../modal";
 
@@ -60,12 +62,18 @@ const showSurveys = (surveys: any[]) => {
         </div>`
         resultDiv!.style.display = 'block';
         const resetModalIcon = document.getElementById('reset-modal-icon');
-
+        resetModalIcon!.style.display = 'block';
+        if (toggleThemeIcon!.classList.contains('light')) {
+            iconChanger('light');
+        }
+        else {
+            iconChanger('dark');
+        }
         resetModalIcon?.addEventListener('click', () => {
             console.log('clicked');
             // set animation style atribute to image when clicked
             resetModalIcon?.querySelector('img')?.setAttribute('style', 'animation: spin 1s infinite linear ;');
-             //timeout to reset animation
+            //timeout to reset animation
             setTimeout(() => {
                 resetModalIcon?.querySelector('img')?.setAttribute('style', 'animation: none');
                 submissionDiv!.style.display = 'flex';

@@ -1,4 +1,6 @@
 import { getSurveys } from "../../../firebaseFunctions/app";
+import { iconChanger } from "../../theme/iconChanger";
+import { toggleThemeIcon } from "../../theme/themeHandler";
 import { overlay, surveyModal, surveyModalEmail, surveyModalText, surveySubmit } from "../modal";
 const surveyIcon = document.querySelector('.surveys-icon');
 const resultDiv = document.getElementById('result');
@@ -46,6 +48,13 @@ const showSurveys = (surveys) => {
         </div>`;
         resultDiv.style.display = 'block';
         const resetModalIcon = document.getElementById('reset-modal-icon');
+        resetModalIcon.style.display = 'block';
+        if (toggleThemeIcon.classList.contains('light')) {
+            iconChanger('light');
+        }
+        else {
+            iconChanger('dark');
+        }
         resetModalIcon?.addEventListener('click', () => {
             console.log('clicked');
             // set animation style atribute to image when clicked

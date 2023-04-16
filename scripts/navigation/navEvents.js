@@ -1,3 +1,4 @@
+import { resetInputs } from "../input-listeners/resetInputs.js";
 import { validateHandler } from "../validators/validators.js";
 import navigate from "./navigation.js";
 const backButtons = document.querySelectorAll('.back-button');
@@ -17,6 +18,10 @@ backButtons.forEach((button, index) => {
 });
 skipButtons.forEach((button, index) => {
     button.addEventListener('click', () => {
+        if (index + 1 >= pages.length - 1) {
+            console.log('reset');
+            resetInputs();
+        }
         index + 1 < pages.length - 1 ?
             navigate(pages[index + 1]) :
             navigate('welcome');

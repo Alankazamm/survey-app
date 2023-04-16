@@ -157,6 +157,9 @@ body {
 #result{
     display: none;
 }
+#result span{
+    display: none;
+}
 #see-surveys-modal{
     position: absolute;
     top:20%;

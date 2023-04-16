@@ -2,10 +2,9 @@ import { createForm, Infos } from "../data-handlers/filledInfos";
 import { mountModal } from "../modals/error-modal/modalEvents";
 import navigate from "../navigation/navigation";
 import { errorIndicators, errorsInputs } from "./errorIndicators";
+
 type input = HTMLInputElement | null;
 type multInput = NodeListOf<HTMLInputElement>;
-
-// filled form infos
 
 // inputs from status page
 export const statusSelect: input = document

@@ -1,7 +1,7 @@
 import { iconChanger } from './iconChanger';
 import { toggleThemeClass, toggleThemeIcon } from './themeHandler';
 import { toggleTheme } from './toggleTheme';
-const classChangeListener = new MutationObserver((mutationsList) => {
+export const classChangeListener = new MutationObserver((mutationsList) => {
     for (let mutation of mutationsList) {
         if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
             if (toggleThemeIcon.classList.contains('light')) {
