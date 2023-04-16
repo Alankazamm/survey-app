@@ -1,4 +1,5 @@
 import { age, detailsTxtArea, email, fullname, investCheckboxes, investSelect, statusRadios, statusSelect } from "../validators/validators"
+import { countDisplayer } from "./textAreaCounter";
 
 export const resetInputs = () => {
     statusSelect!.value = '1';
@@ -9,4 +10,5 @@ export const resetInputs = () => {
     email!.value = '';
     fullname!.value = '';
     age!.value = '';
+    countDisplayer!.textContent = '0/130';
 }

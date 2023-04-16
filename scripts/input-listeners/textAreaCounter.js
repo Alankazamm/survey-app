@@ -1,4 +1,4 @@
-const countDisplayer = document.getElementById('count-displayer');
+export const countDisplayer = document.getElementById('count-displayer');
 export const textAreaCounter = (textArea) => {
     const textAreaValue = textArea.value;
     const textAreaValueLength = textAreaValue.length;
