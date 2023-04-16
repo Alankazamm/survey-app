@@ -15,31 +15,26 @@ export const checkboxInputs = document.getElementById('checkboxInputs');
 export const radioInputs = document.getElementById('radioInputs');
 //create an after element to say what is wrong for email input
 export const createAfterElement = (input) => {
-    const afterElement = document.createElement('span');
-    afterElement.classList.add('after');
+    const ageAfter = document.getElementById('age-after');
+    const emailAfter = document.getElementById('email-after');
+    const fullnameAfter = document.getElementById('fullname-after');
     switch (input) {
         case errorsInputs.emailInput:
-            afterElement.textContent = 'Invalid email format';
-            email?.querySelector('.after')?.remove();
-            if (email.getElementsByClassName('after').length === 0)
-                email.after(afterElement);
+            emailAfter.style.display = 'block';
             setTimeout(() => {
-                afterElement.remove();
+                emailAfter.style.display = 'none';
             }, 3000);
             break;
         case errorsInputs.fullnameInput:
-            afterElement.textContent = 'Invalid name format, name must be at least 2 characters long';
-            fullname?.querySelector('.after')?.remove();
-            fullname.after(afterElement);
+            fullnameAfter.style.display = 'block';
             setTimeout(() => {
-                afterElement.remove();
+                fullnameAfter.style.display = 'none';
             }, 3000);
             break;
         case errorsInputs.ageInput:
-            afterElement.textContent = 'Invalid age format, age must be between 18 and 99';
-            age.after(afterElement);
+            ageAfter.style.display = 'block';
             setTimeout(() => {
-                afterElement.remove();
+                ageAfter.style.display = 'none';
             }, 3000);
             break;
         default:

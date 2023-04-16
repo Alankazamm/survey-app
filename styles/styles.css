@@ -393,6 +393,15 @@ body {
     pointer-events: none;
     padding-left: 10px;   
 }
+#fullname-after{
+    display: none;
+}
+#email-after{
+    display: none;
+}
+#age-after{
+    display: none;
+}
 @media screen and (max-width: 768px) {
     .after {
         font-size: 10px;
