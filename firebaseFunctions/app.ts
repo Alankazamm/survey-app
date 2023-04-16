@@ -1,3 +1,17 @@
+// 1. Create a new Firebase project: https://console.firebase.google.com/
+// 2. Create a Firestore database within the Firebase project
+// 3. Create a new service account for the Firebase project
+// 4. Download the service account key as a JSON file
+// 5. Rename the JSON file to firebaseKey.json
+// 6. Add the firebaseKey.json file to the /public directory
+// 7. Add the VITE_FIREBASE_KEY environment variable to the .env file
+// 8. Add the Firebase SDK to the project with the following command:
+//    npm install firebase
+// 9. Import the Firebase SDK and initialize the app
+// 10. Add a new collection to the Firestore database
+// 11. Create a function to store a survey in the Firestore database
+// 12. Create a function to retrieve surveys from the Firestore database
+
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 const firebaseKey = import.meta.env.VITE_FIREBASE_KEY;

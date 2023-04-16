@@ -88,7 +88,7 @@ export const createForm = (infos: Infos) => {
         }
     });
 
-    arrCheckeds.length >0? filledForm.push(arrCheckeds):filledForm.push('not answered');
+    arrCheckeds.length >0? filledForm.push(arrCheckeds):filledForm.push(['not answered']);
     infos.details!.length > 0 ? filledForm.push(infos.details!) : filledForm.push('Not filled');
     //create the date of the survey in string with these format: dd/mm/yyyy hh:mm:ss
     const date = new Date();
