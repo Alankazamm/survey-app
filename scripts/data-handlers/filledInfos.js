@@ -71,7 +71,17 @@ export const createForm = (infos) => {
     });
     arrCheckeds.length > 0 ? filledForm.push(arrCheckeds) : filledForm.push('not answered');
     infos.details.length > 0 ? filledForm.push(infos.details) : filledForm.push('Not filled');
-    storeSurvey(treatedFormToUpload(filledForm));
+    //create the date of the survey in string with these format: dd/mm/yyyy hh:mm:ss
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    const dateString = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    const filledWithDate = [...filledForm, dateString];
+    storeSurvey(treatedFormToUpload(filledWithDate));
     const domizedValues = filledForm.map((item) => {
         if (!Array.isArray(item))
             return `<p>${item}</p>`;
@@ -79,10 +89,6 @@ export const createForm = (infos) => {
             return `<div>${item.map(nestedItem => {
                 return `<br> ${nestedItem}`;
             })}</div>`;
-        // item.map(nestedItem => {
-        //     infoItem.innerHTML = nestedItem;
-        //     infosUl.appendChild(infoItem);
-        // })
     });
     itemDivs.forEach((div, index) => {
         domizedValues.forEach((value, i) => {

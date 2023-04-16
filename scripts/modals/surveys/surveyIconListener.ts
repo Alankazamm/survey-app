@@ -56,6 +56,7 @@ const showSurveys = (surveys: any[]) => {
             }).join('')}</div>
                         <p>Account status: ${survey.status}</p>
                         <p>Report on losses: ${survey.details}</p>
+                        <p>Survey date: ${survey.date}</p>
                     </div>
                     `;
         }).join('')}

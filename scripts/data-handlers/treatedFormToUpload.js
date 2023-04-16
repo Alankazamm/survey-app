@@ -8,7 +8,8 @@ export const treatedFormToUpload = (form) => {
         market: form[4],
         invest: form[5],
         resources: form[6],
-        details: form[7]
+        details: form[7],
+        date: form[8]
     };
     return treatedForm;
 };
