@@ -18,18 +18,33 @@ export const radioInputs = document.getElementById('radioInputs')
 export const createAfterElement = (input: errorsInputs) => {
     const afterElement = document.createElement('span');
     afterElement.classList.add('after');
+    
     switch (input) {
         case errorsInputs.emailInput:
             afterElement.textContent = 'Invalid email format';
-            email!.after(afterElement);
+            email?.querySelector('.after')?.remove();
+            if(email!.getElementsByClassName('after').length === 0) email!.after(afterElement);
+             
+            setTimeout(() => {
+                afterElement.remove();
+            }, 3000);
             break;
         case errorsInputs.fullnameInput:
             afterElement.textContent = 'Invalid name format, name must be at least 2 characters long';
+            fullname?.querySelector('.after')?.remove();
             fullname!.after(afterElement);
+            setTimeout(() => {
+                afterElement.remove();
+            }, 3000);
             break;
         case errorsInputs.ageInput:
+           
             afterElement.textContent = 'Invalid age format, age must be between 18 and 99';
+           
             age!.after(afterElement);
+            setTimeout(() => {
+                afterElement.remove();
+            }, 3000);
             break;
         default:
             break;

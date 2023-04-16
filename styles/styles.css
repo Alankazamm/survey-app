@@ -42,6 +42,14 @@ body {
     justify-content: space-between;
     gap: 10px;
 }
+@media screen and (max-width: 465px) {
+    .icons{
+        top: 10px;
+        right: 10px;
+        flex-direction: row-reverse;
+        
+    }
+}
 /* animation for icon to get bigger then smaller when hovering over it */
 @keyframes scale {
     0% {
@@ -301,7 +309,13 @@ body {
     height: var(--btn-dsk-height);
     width: 90%;
 }
+#see-surveys-modal #result {
+    display: none;
+}
 @media screen and (max-width: 768px) {
+    #result{
+        display: none;
+    }
     #see-surveys-modal{
         width:90vw;
         left:5vw;
@@ -347,6 +361,9 @@ body {
 
 }
 @media screen and (min-height: 768px) {
+    #result{
+        display: none;
+    }
     #see-surveys-modal p{
        font-size:28px;
     }
@@ -372,7 +389,7 @@ body {
     color: red;
     font-size: 12px;
     font-weight: bold;
-    margin-top: -15px;
+    margin-top: -10px;
     pointer-events: none;
     padding-left: 10px;   
 }
@@ -446,16 +463,24 @@ body {
 }
 
 .img-section img {
-    max-width: 552px;
+    max-width: 553px;
     max-height: 528px;
     width: 100%;
-    height: auto;
+    
 }
-
+.start-section .img-section img{
+    max-height: 66.666vh;
+}
 .welcome-section img {
     max-height: 98vh;
     max-width: 431px;
 }
+.details-section img {
+    max-height: 100vh;
+    max-width: 528px;
+}
+
+
 
 @media screen and (max-width: 768px) {
     .img-section {
@@ -483,8 +508,18 @@ body {
         transform: translate(-9%, 0);
         max-width: 65.41%;
     }
+   
 }
-
+@media screen and (max-width: 768px) and (min-width: 470px) {
+    .details-section img {
+        min-width: 220px;
+        max-width: 82.5%;
+    }
+    .contact-section img {
+        min-width: 220px;
+        max-width: 82.5%;
+    }
+}
 .content-section {
     display: flex;
     flex-direction: column;
@@ -550,7 +585,7 @@ body {
     }
 
     .details-section .content-section {
-        margin-top: 23px;
+        margin-top: 10px;
 
     }
 
@@ -880,7 +915,10 @@ input[type="radio"]:checked {
         width: 15px;
         height: 15px;
     }
-
+    .status-section .mult {
+        gap: 0px;
+        margin-bottom: 20px;
+    }
     .input-wrapper {
         gap: 7px;
     }
@@ -993,7 +1031,7 @@ textarea:focus {
         height: 33px;
         padding-left: 12px;
         font-size: var(--form-mb-fsize);
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         max-width: 378px;
         width: 70vw;
         
