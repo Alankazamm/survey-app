@@ -173,6 +173,7 @@ body {
     top:20%;
     left:35%;
     width: 40vw;
+    max-width:80vw;
     height:30vw;
     max-height:70vh;
     border:1px solid rgba(0, 0, 0, 0.5);
