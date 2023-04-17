@@ -44,12 +44,3 @@ export const getSurveys = async (email) => {
     });
     return surveys;
 };
-export const getAllSurveys = async () => {
-    let surveys = [];
-    const querySnapshot = await getDocs(collection(db, "surveys")).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            surveys.push(doc.data());
-        });
-    });
-    return surveys;
-};

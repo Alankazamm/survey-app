@@ -53,12 +53,3 @@ export const getSurveys = async (email: string) => {
   return surveys;
 }
 
-export const getAllSurveys = async () => {
-  let surveys: Surveys = [];
-  const querySnapshot = await getDocs(collection(db, "surveys")).then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      surveys.push(doc.data() as Infos);
-    });
-  });
-  return surveys;
-}
