@@ -28,10 +28,9 @@ const db = getFirestore(app);
 export const storeSurvey = async (survey) => {
     try {
         const docRef = await addDoc(collection(db, "surveys"), survey);
-        console.log("Document written with ID: ", docRef.id);
     }
     catch (e) {
-        console.error("Error adding document: ", e);
+        alert(`Error adding document: ${e}`);
     }
 };
 export const getSurveys = async (email) => {
@@ -41,6 +40,15 @@ export const getSurveys = async (email) => {
             if (doc.data().email === email) {
                 surveys.push(doc.data());
             }
+        });
+    });
+    return surveys;
+};
+export const getAllSurveys = async () => {
+    let surveys = [];
+    const querySnapshot = await getDocs(collection(db, "surveys")).then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            surveys.push(doc.data());
         });
     });
     return surveys;

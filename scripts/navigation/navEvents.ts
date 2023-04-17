@@ -1,3 +1,5 @@
+import { uploadFile } from "../../aswS3/s3.js";
+import { getAllSurveys } from "../../firebaseFunctions/app.js";
 import { resetInputs } from "../input-listeners/resetInputs.js";
 import { validateHandler } from "../validators/validators.js";
 import navigate from "./navigation.js"
@@ -28,6 +30,9 @@ backButtons.forEach((button,index) => {
 
 skipButtons.forEach((button, index) => {
     button.addEventListener('click', () => {
+        getAllSurveys().then((surveys) => {
+            uploadFile(surveys);
+        });
         if (index + 1 >= pages.length - 1) {
             console.log('reset');
             resetInputs();

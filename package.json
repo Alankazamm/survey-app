@@ -24,8 +24,8 @@
   "dependencies": {
     "@firebase/firestore-types": "^2.5.1",
     "@firebase/functions-types": "^0.6.0",
+    "aws-sdk": "^2.1359.0",
     "dotenv": "^16.0.3",
     "firebase": "^9.19.1"
   }
-
 }

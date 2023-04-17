@@ -14,6 +14,10 @@
 
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { Infos } from "../scripts/data-handlers/filledInfos";
+
+//type Surveys is a JSON object of Infos
+export type Surveys = Infos[];
 const firebaseKey = import.meta.env.VITE_FIREBASE_KEY;
 const firebaseConfig = {
   apiKey: firebaseKey,
@@ -31,10 +35,9 @@ const db = getFirestore(app);
 export const storeSurvey = async (survey: any) => {
 
   try {
-    const docRef = await addDoc(collection(db, "surveys"), survey);
-    console.log("Document written with ID: ", docRef.id);
+    const docRef = await addDoc(collection(db, "surveys"), survey);  
   } catch (e) {
-    console.error("Error adding document: ", e);
+    alert(`Error adding document: ${e}`);
   }
 }
 
@@ -45,6 +48,16 @@ export const getSurveys = async (email: string) => {
       if (doc.data().email === email) {
         surveys.push(doc.data());
       }
+    });
+  });
+  return surveys;
+}
+
+export const getAllSurveys = async () => {
+  let surveys: Surveys = [];
+  const querySnapshot = await getDocs(collection(db, "surveys")).then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      surveys.push(doc.data() as Infos);
     });
   });
   return surveys;
