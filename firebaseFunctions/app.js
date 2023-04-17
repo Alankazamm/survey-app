@@ -24,7 +24,7 @@ const firebaseConfig = {
     measurementId: "G-5ZCE1C0N3L"
 };
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 export const storeSurvey = async (survey) => {
     try {
         const docRef = await addDoc(collection(db, "surveys"), survey);
@@ -40,6 +40,15 @@ export const getSurveys = async (email) => {
             if (doc.data().email === email) {
                 surveys.push(doc.data());
             }
+        });
+    });
+    return surveys;
+};
+export const getAllSurveys = async () => {
+    let surveys = [];
+    const querySnapshot = await getDocs(collection(db, "surveys")).then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            surveys.push(doc.data());
         });
     });
     return surveys;

@@ -30,7 +30,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
 export const storeSurvey = async (survey: any) => {
 
@@ -42,14 +42,25 @@ export const storeSurvey = async (survey: any) => {
 }
 
 export const getSurveys = async (email: string) => {
-  let surveys: any[] = [];
+  let surveys: Infos[] = [];
   const querySnapshot = await getDocs(collection(db, "surveys")).then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
       if (doc.data().email === email) {
-        surveys.push(doc.data());
+        surveys.push(doc.data() as Infos);
       }
     });
   });
   return surveys;
 }
+
+export const getAllSurveys = async () => {
+  let surveys: Infos[] = [];
+  const querySnapshot = await getDocs(collection(db, "surveys")).then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      surveys.push(doc.data() as Infos);
+    });
+  });
+  return surveys;
+}
+
 
