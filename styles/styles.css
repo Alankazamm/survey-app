@@ -205,7 +205,7 @@ body {
     flex-direction:column;
     align-items:center;
     height:100%;
-    width:96%;
+    width:100%;
     overflow-x:hidden;
 }
 #see-surveys-modal .modal-content::-webkit-scrollbar {
@@ -373,12 +373,14 @@ body {
         font-size:14px;
 
     }
-    #see-surveys-modal .modal-content .modal-header{
-        
-        width:90%;
-    }
+    
 
 }
+#see-surveys-modal .modal-content .modal-header{
+        
+    width:90%;
+}
+
 @media screen and (min-height: 768px) {
     #result{
         display: none;
