@@ -359,6 +359,19 @@ body {
     #see-surveys-modal p{
         margin-top:10px;
     }
+    #see-surveys-modal .modal-content #result{
+        height:fit-content;
+        width:80%;
+        font-size:14px;
+
+    }
+    #see-surveys-modal .modal-content #result h2{
+        font-size:18px;
+    }
+    #see-surveys-modal .modal-content .modal-header{
+        font-size:14px;
+        width:90%;
+    }
 
 }
 @media screen and (min-height: 768px) {
