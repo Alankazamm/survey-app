@@ -1,4 +1,5 @@
 import { getSurveys } from "../../../firebaseFunctions/app";
+import { Infos } from "../../data-handlers/filledInfos";
 import { iconChanger } from "../../theme/iconChanger";
 import { toggleThemeIcon } from "../../theme/themeHandler";
 import { hideModal } from "../error-modal/modalEvents";
@@ -92,7 +93,7 @@ surveyIcon?.addEventListener('click', () => {
 
 surveySubmit!.addEventListener('click', () => {
     const email = surveyModalEmail.value;
-    getSurveys(email).then((surveys: Survey[]) => {
+    getSurveys(email).then((surveys: Infos[]) => {
         showSurveys(surveys);
     })
 })

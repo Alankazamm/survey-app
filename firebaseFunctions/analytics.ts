@@ -46,15 +46,71 @@ enum Invest {
     BANK_MANAGER = "My bank's manager advices me.",
     FLIP_COIN = "I flip a coin"
 }
+interface Invests{
+    [key: string]: {
+      [key: string]: number;
+    };
+  }
 const surveys: Infos[] = await getAllSurveys();
+//1. Average age per market
+export const averageMarketperAge = {
+    "stock market": 0,
+    "foreign exchange": 0,
+    "commodity": 0,
+    "bond market": 0,
+    "cryptocurrency market": 0
+}
 
-let averageAge = 0;
-averageAge = surveys.reduce((acc, survey) => {
-    return acc + Number(survey.age);
-}, 0) / surveys.length;
+const getAverageMarketperAge = () => {
+    //get the average age for each market individually
+    let averageAgeStock = 0;
+    let averageAgeForeignExchange = 0;
+    let averageAgeCommodity = 0;
+    let averageAgeBond = 0;
+    let averageAgeCryptocurrency = 0;
+    let countStock = 0;
+    let countForeignExchange = 0;
+    let countCommodity = 0;
+    let countBond = 0;
+    let countCryptocurrency = 0;
+    surveys.forEach(survey => {
+        switch (survey.market) {
+            case Market.STOCK:
+                averageAgeStock += parseInt(survey.age);
+                countStock++;
+                break;
+            case Market.FOREIGN_EXCHANGE:
+                averageAgeForeignExchange += parseInt(survey.age);
+                countForeignExchange++;
+                break;
+            case Market.COMMODITY:
+                averageAgeCommodity += parseInt(survey.age);
+                countCommodity++;
+                break;
+            case Market.BOND:
+                averageAgeBond += parseInt(survey.age);
+                countBond++;
+                break;
+            case Market.CRYPTOCURRENCY:
+                averageAgeCryptocurrency += parseInt(survey.age);
+                countCryptocurrency++;
+                break;
+        }
+    }
+    );
+    averageMarketperAge[Market.STOCK] = averageAgeStock / countStock;
+    averageMarketperAge[Market.FOREIGN_EXCHANGE] = averageAgeForeignExchange / countForeignExchange;
+    averageMarketperAge[Market.COMMODITY] = averageAgeCommodity / countCommodity;
+    averageMarketperAge[Market.BOND] = averageAgeBond / countBond;
+    averageMarketperAge[Market.CRYPTOCURRENCY] = averageAgeCryptocurrency / countCryptocurrency;
 
+    return;
+}
 
-let accountStatus = {
+getAverageMarketperAge();
+
+//2. Account status
+export const accountStatus = {
     "I have not created an account yet.": 0,
     "My account status is okay.": 0,
     "I'm currently having financial issues.": 0,
@@ -74,22 +130,23 @@ surveys.forEach(survey => {
     }
 });
 
-let market = {
-    "stock market": 0,
-    "foreign exchange": 0,
-    "commodity": 0,
-    "bond market": 0,
-    "cryptocurrency market": 0
-}
+// let market = {
+//     "stock market": 0,
+//     "foreign exchange": 0,
+//     "commodity": 0,
+//     "bond market": 0,
+//     "cryptocurrency market": 0
+// }
 
-let resources = {
-    "Books and articles": 0,
-    "YouTube tutorial videos": 0,
-    "online or face to face courses": 0,
-    "experience with little investment": 0
-}
+// export const resources = {
+//     "Books and articles": 0,
+//     "YouTube tutorial videos": 0,
+//     "online or face to face courses": 0,
+//     "experience with little investment": 0
+// }
 
-let marketResources = {
+//3. Resources utilized to train by Market
+export const marketResources = {
     "stock market": {
         "Books and articles": 0,
         "YouTube tutorial videos": 0,
@@ -126,7 +183,7 @@ let marketResources = {
 surveys.forEach(survey => {
     switch (survey.market) {
         case Market.STOCK:
-            market[Market.STOCK]++;
+            // market[Market.STOCK]++;
             survey.resources!.forEach(resource => {
                 marketResources[Market.STOCK]["Books and articles"] += resource === "Books and articles" ? 1 : 0;
                 marketResources[Market.STOCK]["YouTube tutorial videos"] += resource === "YouTube tutorial videos" ? 1 : 0;
@@ -135,7 +192,7 @@ surveys.forEach(survey => {
             });
             break;
         case Market.FOREIGN_EXCHANGE:
-            market[Market.FOREIGN_EXCHANGE]++;
+            // market[Market.FOREIGN_EXCHANGE]++;
             survey.resources!.forEach(resource => {
                 marketResources[Market.FOREIGN_EXCHANGE]["Books and articles"] += resource === "Books and articles" ? 1 : 0;
                 marketResources[Market.FOREIGN_EXCHANGE]["YouTube tutorial videos"] += resource === "YouTube tutorial videos" ? 1 : 0;
@@ -144,7 +201,7 @@ surveys.forEach(survey => {
             });
             break;
         case Market.COMMODITY:
-            market[Market.COMMODITY]++;
+            // market[Market.COMMODITY]++;
             survey.resources!.forEach(resource => {
                 marketResources[Market.COMMODITY]["Books and articles"] += resource === "Books and articles" ? 1 : 0;
                 marketResources[Market.COMMODITY]["YouTube tutorial videos"] += resource === "YouTube tutorial videos" ? 1 : 0;
@@ -153,7 +210,7 @@ surveys.forEach(survey => {
             });
             break;
         case Market.BOND:
-            market[Market.BOND]++;
+            // market[Market.BOND]++;
             survey.resources!.forEach(resource => {
                 marketResources[Market.BOND]["Books and articles"] += resource === "Books and articles" ? 1 : 0;
                 marketResources[Market.BOND]["YouTube tutorial videos"] += resource === "YouTube tutorial videos" ? 1 : 0;
@@ -162,7 +219,7 @@ surveys.forEach(survey => {
             });
             break;
         case Market.CRYPTOCURRENCY:
-            market[Market.CRYPTOCURRENCY]++;
+            // market[Market.CRYPTOCURRENCY]++;
             survey.resources!.forEach(resource => {
                 marketResources[Market.CRYPTOCURRENCY]["Books and articles"] += resource === "Books and articles" ? 1 : 0;
                 marketResources[Market.CRYPTOCURRENCY]["YouTube tutorial videos"] += resource === "YouTube tutorial videos" ? 1 : 0;
@@ -173,8 +230,8 @@ surveys.forEach(survey => {
     }
 });
 
-//create a invest object with the same keys as the Invest enum and for each key create a property with: accountStatus is okay and financial issues
-let invest = {
+//4. Account Status by Insvest's Decision
+export const invest:Invests = {
     "I have not invested yet.": {
         "My account status is okay.": 0,
         "I'm currently having financial issues.": 0
@@ -224,7 +281,12 @@ surveys.forEach(survey => {
     }
 });
 
-const stopwords = ["o", "a", "de", "para", "em", "com", "é", "e", "ou", "que", "como"];
+
+//5. Common words in the details field
+const stopwords = ["o", "a", "de", "para", "em", "com", "é", "e", "ou", "que", "como", "a", "on", "the", "in", "of", "i", "he", "it", "no"];
+//create an array bellow with the following structure [ [word, count], [word, count], [word, count] ] where word is a string and count is a number
+
+
 const commonWords: string[] = [];
 
 surveys.forEach(survey => {
@@ -232,7 +294,7 @@ surveys.forEach(survey => {
     if (text) {
         const words = text.split(" ");
         words.forEach(word => {
-            if (!stopwords.includes(word)) {
+            if (!stopwords.includes(word) && word.length < 10 ) {
                 commonWords.push(word);
             }
         });
@@ -244,7 +306,11 @@ let wordCount: { [key: string]: number } = {};
 commonWords.forEach(word => {
     wordCount[word] = 0;
 });
-
-//select the 10 most common words counted in the wordCount object
-let top10Words = Object.keys(wordCount).sort((a, b) => wordCount[b] - wordCount[a]).slice(0, 10);
+//count the number of times each word appears in the commonWords array and update the wordCount object
+commonWords.forEach(word => {
+    wordCount[word]++;
+});
+export const words = wordCount
+console.log(wordCount);
+console.log(commonWords);
 

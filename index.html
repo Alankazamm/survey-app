@@ -282,7 +282,29 @@
                 <div class="buttons-wrapper">
                     <button class="btn skip-button">Back to Home</button>
                 </div>
+            </div>
+                
         </section>
+        <section class="page dashboard-section">
+            <span class="icons-wrapper"></span>
+            <div class="content-section">
+                <div class="dashboard">
+                    <div class="dashboard-item">
+                        <canvas id="status-chart"></canvas>
+                    </div>
+                    <div class="dashboard-item">
+                        <canvas id="age-chart"></canvas>
+                    </div>
+                    <div class="dashboard-item">
+                        <canvas id="invest-chart" width="300" height="300"></canvas>
+                    </div>
+                    <div class="dashboard-item">
+                        <canvas id="wordcloud-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
     </main>
 
@@ -296,6 +318,8 @@
     <script type="module" src="./scripts/modals/error-modal/buttonListener.js"></script>
     <script type="module" src="./scripts/modals/surveys/surveyIconListener.js"></script>
     <script type="module" src="./scripts/modals/modal.ts"></script>
+    <script type="module" src="./scripts/dashboard/mountDashboard.js"></script>
+
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </body>
