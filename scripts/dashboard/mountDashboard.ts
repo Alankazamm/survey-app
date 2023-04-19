@@ -2,42 +2,42 @@ import Chart from 'chart.js/auto';
 import { WordCloudController, WordElement } from 'chartjs-chart-wordcloud';
 import { WordCloudChart } from 'chartjs-chart-wordcloud';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { accountStatus, averageMarketperAge, invest, words } from '../../firebaseFunctions/analytics';
+import { accountStatus, averageMarketperAge, invest, words, investmentByDateData } from '../../firebaseFunctions/analytics';
 import { PluginOptionsByType } from 'chart.js/dist/types/index';
 
 interface Word {
     text: string;
     weight: number;
     [key: string]: any;
-  }
-  
+}
+
 interface MyPluginOptions extends PluginOptionsByType<'wordCloud'> {
     wordcloud: {
-      minSize?: number;
-      maxSize?: number;
-      fontFamily?: string;
-      fontWeight?: string | number;
-      fontStyle?: string;
-      fontVariant?: string;
-      padding?: number;
-      rotation?: number | ((word: Word) => number);
-      rotationUnit?: 'deg' | 'rad';
-      color?: ((word: Word) => string) | string;
-      backgroundColor?: ((word: Word) => string) | string;
-      fontSize?: {
-        from: number;
-        to: number;
-      };
-      spiral?: 'archimedean' | 'rectangular';
-      enableHover?: boolean;
-      hoverColor?: ((word: Word) => string) | string;
-      hoverFontSize?: {
-        from: number;
-        to: number;
-      };
-      drawOutOfBound?: boolean;
+        minSize?: number;
+        maxSize?: number;
+        fontFamily?: string;
+        fontWeight?: string | number;
+        fontStyle?: string;
+        fontVariant?: string;
+        padding?: number;
+        rotation?: number | ((word: Word) => number);
+        rotationUnit?: 'deg' | 'rad';
+        color?: ((word: Word) => string) | string;
+        backgroundColor?: ((word: Word) => string) | string;
+        fontSize?: {
+            from: number;
+            to: number;
+        };
+        spiral?: 'archimedean' | 'rectangular';
+        enableHover?: boolean;
+        hoverColor?: ((word: Word) => string) | string;
+        hoverFontSize?: {
+            from: number;
+            to: number;
+        };
+        drawOutOfBound?: boolean;
     };
-  }
+}
 
 interface LabelContext {
     dataIndex: number;
@@ -237,37 +237,13 @@ console.log(wordCloudData);
 // wordcloud chart with the words color black
 const wordCloudCanvas = document.getElementById('wordcloud-chart') as HTMLCanvasElement;
 const wordCloudCtx = wordCloudCanvas.getContext('2d');
-// const wordCloudChart = new Chart(wordCloudCtx!, {
-//     type: 'wordCloud',
-//     data: {
-//         labels: wordCloudData.map((data) => data.key),
-//         datasets: [{
-//             data: wordCloudData.map((d) =>  d.value ),
-//             label: '',
-//             color: 'black'
-//         }]
-//     },
-//     options: {
-//         plugins: {
-//             legend: {
-//                 display: false
-//             },
-//             title: {
-//                 display: true,
-//                 text: 'Most used words'
-//             },
-            
-
-//         }
-//     }
-// });
 const wordCloudChart = new WordCloudChart(wordCloudCtx!, {
     data: {
         labels: wordCloudData.map((data) => data.key),
         datasets: [{
             data: wordCloudData.map((d) => d.value),
             label: '',
-            
+
             size: 30
         }]
     },
@@ -283,14 +259,78 @@ const wordCloudChart = new WordCloudChart(wordCloudCtx!, {
             wordcloud: {
                 minSize: 220, // define o tamanho mínimo da fonte como 20
                 fontSize: {
-                  from: 220, // define a faixa de tamanhos de fonte permitidos
-                  to: 620
+                    from: 220, // define a faixa de tamanhos de fonte permitidos
+                    to: 620
                 }
-              }
-            } as MyPluginOptions
-          }
-        });
-            
+            }
+        } as MyPluginOptions
+    }
+});
 
+//6. markets-trhough-time-chart
+let dates: string[] = [];
 
+for (let market in investmentByDateData) {
+    for (let date in investmentByDateData[market]) {
+        if (!dates.includes(date)) {
+            dates.push(date);
+        }
+    }
+}
 
+dates.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+let investmentByDateDatasets = [];
+for (let market in investmentByDateData) {
+    let values = [];
+
+    for (let date of dates) {
+        let value = investmentByDateData[market][date] || 0;
+        values.push(value);
+    }
+
+    let investmentByDateDataset = {
+        label: market,
+        data: values,
+        fill: false
+    };
+
+    investmentByDateDatasets.push(investmentByDateDataset);
+}
+
+const marketsThroughTimeCanvas = document.getElementById('markets-trhough-time-chart') as HTMLCanvasElement;
+const marketsThroughTimeCtx = marketsThroughTimeCanvas.getContext('2d');
+const marketsThroughTimeChart = new Chart(marketsThroughTimeCtx!, {
+    type: 'line',
+    data: {
+        labels: dates,
+        datasets: investmentByDateDatasets
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    color: 'rgb(0, 0, 0)'
+                },
+                display: true
+            },
+            title: {
+                display: true,
+                text: "Market engagement trend through time"
+            },
+            datalabels: {
+                color: 'rgb(0, 0, 0)',
+                font: {
+                    weight: 'bold',
+                },
+                formatter: (value: number, context) => {
+                    //fix 'context may be undefined' error
+                    const ctx = context;
+                    const label = ctx?.chart.data.labels?.[ctx.dataIndex];
+                    return `${label}: ${value}`;
+                }
+            }
+        }
+    },
+});

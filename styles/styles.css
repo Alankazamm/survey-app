@@ -1194,6 +1194,8 @@ textarea:focus {
     color: var(--secondary-color);
     width: fit-content;
     height: 300px;
+    border: 1px solid var(--secondary-color);
+    box-shadow: 3px 5px 1px rgba(0,0,0,0.2);
 }
 .dashboard-item canvas{
     width: 100%;

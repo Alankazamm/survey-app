@@ -119,19 +119,6 @@ surveys.forEach(survey => {
             break;
     }
 });
-// let market = {
-//     "stock market": 0,
-//     "foreign exchange": 0,
-//     "commodity": 0,
-//     "bond market": 0,
-//     "cryptocurrency market": 0
-// }
-// export const resources = {
-//     "Books and articles": 0,
-//     "YouTube tutorial videos": 0,
-//     "online or face to face courses": 0,
-//     "experience with little investment": 0
-// }
 //3. Resources utilized to train by Market
 export const marketResources = {
     "stock market": {
@@ -288,5 +275,26 @@ commonWords.forEach(word => {
     wordCount[word]++;
 });
 export const words = wordCount;
-console.log(wordCount);
-console.log(commonWords);
+//6. Market through time
+//create data for line chart with each investment Market type growth by the date, how much people surveiled stock market in march 23, then in april for example
+const investmentByDate = {
+    [Market.STOCK]: {},
+    [Market.FOREIGN_EXCHANGE]: {},
+    [Market.COMMODITY]: {},
+    [Market.BOND]: {},
+    [Market.CRYPTOCURRENCY]: {}
+};
+//date format: "16/4/2023 14:1:42", just use the month and year
+Object.keys(investmentByDate).forEach(market => {
+    let accumulatedInvestment = {};
+    surveys.forEach(survey => {
+        const date = survey.date?.split(" ")[0];
+        if (date) {
+            const previousInvestment = accumulatedInvestment[date] || 0;
+            const newInvestment = survey.market === market ? 1 : 0;
+            accumulatedInvestment[date] = previousInvestment + newInvestment;
+            investmentByDate[market][date] = accumulatedInvestment[date];
+        }
+    });
+});
+export const investmentByDateData = investmentByDate;

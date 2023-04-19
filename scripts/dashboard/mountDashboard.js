@@ -1,7 +1,7 @@
 import Chart from 'chart.js/auto';
 import { WordCloudController, WordElement } from 'chartjs-chart-wordcloud';
 import { WordCloudChart } from 'chartjs-chart-wordcloud';
-import { accountStatus, averageMarketperAge, invest, words } from '../../firebaseFunctions/analytics';
+import { accountStatus, averageMarketperAge, invest, words, investmentByDateData } from '../../firebaseFunctions/analytics';
 Chart.register(WordCloudController, WordElement);
 const statusCanvas = document.getElementById('status-chart');
 const statusCtx = statusCanvas.getContext('2d');
@@ -151,28 +151,6 @@ console.log(wordCloudData);
 // wordcloud chart with the words color black
 const wordCloudCanvas = document.getElementById('wordcloud-chart');
 const wordCloudCtx = wordCloudCanvas.getContext('2d');
-// const wordCloudChart = new Chart(wordCloudCtx!, {
-//     type: 'wordCloud',
-//     data: {
-//         labels: wordCloudData.map((data) => data.key),
-//         datasets: [{
-//             data: wordCloudData.map((d) =>  d.value ),
-//             label: '',
-//             color: 'black'
-//         }]
-//     },
-//     options: {
-//         plugins: {
-//             legend: {
-//                 display: false
-//             },
-//             title: {
-//                 display: true,
-//                 text: 'Most used words'
-//             },
-//         }
-//     }
-// });
 const wordCloudChart = new WordCloudChart(wordCloudCtx, {
     data: {
         labels: wordCloudData.map((data) => data.key),
@@ -200,4 +178,65 @@ const wordCloudChart = new WordCloudChart(wordCloudCtx, {
             }
         }
     }
+});
+//6. markets-trhough-time-chart
+let dates = [];
+for (let market in investmentByDateData) {
+    for (let date in investmentByDateData[market]) {
+        if (!dates.includes(date)) {
+            dates.push(date);
+        }
+    }
+}
+dates.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+let investmentByDateDatasets = [];
+for (let market in investmentByDateData) {
+    let values = [];
+    for (let date of dates) {
+        let value = investmentByDateData[market][date] || 0;
+        values.push(value);
+    }
+    let investmentByDateDataset = {
+        label: market,
+        data: values,
+        fill: false
+    };
+    investmentByDateDatasets.push(investmentByDateDataset);
+}
+const marketsThroughTimeCanvas = document.getElementById('markets-trhough-time-chart');
+const marketsThroughTimeCtx = marketsThroughTimeCanvas.getContext('2d');
+const marketsThroughTimeChart = new Chart(marketsThroughTimeCtx, {
+    type: 'line',
+    data: {
+        labels: dates,
+        datasets: investmentByDateDatasets
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    color: 'rgb(0, 0, 0)'
+                },
+                display: true
+            },
+            title: {
+                display: true,
+                text: "Market engagement trend through time"
+            },
+            datalabels: {
+                color: 'rgb(0, 0, 0)',
+                font: {
+                    weight: 'bold',
+                },
+                formatter: (value, context) => {
+                    //fix 'context may be undefined' error
+                    const ctx = context;
+                    const label = ctx?.chart.data.labels?.[ctx.dataIndex];
+                    return `${label}: ${value}`;
+                }
+            }
+        }
+    },
 });
