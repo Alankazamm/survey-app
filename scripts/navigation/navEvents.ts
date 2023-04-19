@@ -5,12 +5,13 @@ import navigate from "./navigation.js"
 
 const backButtons = document.querySelectorAll('.back-button');
 const skipButtons = document.querySelectorAll('.skip-button');
-
+console.log(skipButtons.length)
 const nextButtons = [
     document.querySelector('#next-status'),
     document.querySelector('#next-invest'),
     document.querySelector('#next-details'),
     document.querySelector('#next-contact'),
+    
 ]
 
 nextButtons.forEach((button) =>
@@ -18,7 +19,7 @@ nextButtons.forEach((button) =>
 
 
 
-const pages = ['welcome', 'start', 'status', 'invest', 'details', 'contact', 'sucess'];
+const pages = ['welcome', 'start', 'status', 'invest', 'details', 'contact', 'sucess', 'dashboard'];
 
 backButtons.forEach((button,index) => {
     button.addEventListener('click', () => {
@@ -28,13 +29,16 @@ backButtons.forEach((button,index) => {
 
 skipButtons.forEach((button, index) => {
     button.addEventListener('click', () => {
-        if (index + 1 >= pages.length - 1) {
-            console.log('reset');
+        console.log(index);
+        if (index === 5) {
+            navigate('dashboard'); 
             resetInputs();
         }
-        index + 1 < pages.length -1 ?
+        else {
+            index + 1 < pages.length -1 && index !== 5?
             navigate(pages[index + 1]) :
-            navigate('welcome');
+                navigate('welcome');
+        }
     });
 });
 

@@ -278,8 +278,8 @@ export const words = wordCount;
 //6. Market through time
 //create data for line chart with each investment Market type growth by the date, how much people surveiled stock market in march 23, then in april for example
 const investmentByDate = {
-    [Market.STOCK]: {},
     [Market.FOREIGN_EXCHANGE]: {},
+    [Market.STOCK]: {},
     [Market.COMMODITY]: {},
     [Market.BOND]: {},
     [Market.CRYPTOCURRENCY]: {}

@@ -3,6 +3,7 @@ import { validateHandler } from "../validators/validators.js";
 import navigate from "./navigation.js";
 const backButtons = document.querySelectorAll('.back-button');
 const skipButtons = document.querySelectorAll('.skip-button');
+console.log(skipButtons.length);
 const nextButtons = [
     document.querySelector('#next-status'),
     document.querySelector('#next-invest'),
@@ -10,7 +11,7 @@ const nextButtons = [
     document.querySelector('#next-contact'),
 ];
 nextButtons.forEach((button) => button.addEventListener('click', () => validateHandler(button.id)));
-const pages = ['welcome', 'start', 'status', 'invest', 'details', 'contact', 'sucess'];
+const pages = ['welcome', 'start', 'status', 'invest', 'details', 'contact', 'sucess', 'dashboard'];
 backButtons.forEach((button, index) => {
     button.addEventListener('click', () => {
         navigate(pages[index]);
@@ -18,12 +19,15 @@ backButtons.forEach((button, index) => {
 });
 skipButtons.forEach((button, index) => {
     button.addEventListener('click', () => {
-        if (index + 1 >= pages.length - 1) {
-            console.log('reset');
+        console.log(index);
+        if (index === 5) {
+            navigate('dashboard');
             resetInputs();
         }
-        index + 1 < pages.length - 1 ?
-            navigate(pages[index + 1]) :
-            navigate('welcome');
+        else {
+            index + 1 < pages.length - 1 && index !== 5 ?
+                navigate(pages[index + 1]) :
+                navigate('welcome');
+        }
     });
 });

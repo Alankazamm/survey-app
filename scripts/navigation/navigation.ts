@@ -5,16 +5,18 @@ const pages: HTMLElement[] = [
     document.querySelector('.invest-section')!,
     document.querySelector('.details-section')!,
     document.querySelector('.contact-section')!,
-    document.querySelector('.sucess-section')!
+    document.querySelector('.sucess-section')!,
+    document.querySelector('.dashboard-section')!,
 ];
 
-const [welcome, start, statuspage, invest, details, contact, sucess] = pages;
+const [welcome, start, statuspage, invest, details, contact, sucess, dashboard] = pages;
 
 const navigate = (page: string) => {
+    console.log(page);
     switch (page) {
 
         case 'welcome':
-            sucess.style.display = 'none';
+            dashboard.style.display = 'none';
             welcome.style.display = 'flex';
             start.style.display = 'none';
             break;
@@ -45,6 +47,10 @@ const navigate = (page: string) => {
         case 'sucess':
             contact.style.display = 'none';
             sucess.style.display = 'flex';
+            break;
+        case 'dashboard':
+            sucess.style.display = 'none';
+            dashboard.style.display = 'flex';
             break;
 
     }
