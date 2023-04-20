@@ -17,6 +17,8 @@ export const createForm = (infos) => {
         case '3':
             filledForm.push("I'm currently having financial issues.");
             break;
+        case '4':
+            filledForm.push("I have not created an account yet.");
         default:
             filledForm.push("Not answered.");
             break;
@@ -49,7 +51,7 @@ export const createForm = (infos) => {
             filledForm.push("I flip a coin");
             break;
         default:
-            filledForm.push("Not answered.");
+            filledForm.push("I have not invested yet.");
             break;
     }
     let arrCheckeds = [];

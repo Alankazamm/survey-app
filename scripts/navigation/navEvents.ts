@@ -1,3 +1,4 @@
+import { mountDashboard } from "../dashboard/mountDashboard.js";
 import { resetInputs } from "../input-listeners/resetInputs.js";
 import { validateHandler } from "../validators/validators.js";
 import navigate from "./navigation.js"
@@ -32,6 +33,7 @@ skipButtons.forEach((button, index) => {
         console.log(index);
         if (index === 5) {
             navigate('dashboard'); 
+            mountDashboard()
             resetInputs();
         }
         else {

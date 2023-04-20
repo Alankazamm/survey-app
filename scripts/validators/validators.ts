@@ -36,6 +36,7 @@ enum validatorTexts {
     invest = 'Please select at least one resource you use for training and indicate how you decide to invest, or click the skip button.',
     details = 'Please send us more details in order to optimize the survey, or click the skip button.',
     contact = 'Please fill in your contact information correctly!',
+    conflict = "You answered that haven't created an account yet, but you selected a market. Please check your answers and try again.",
 }
 
 // get radio/checkbox values
@@ -61,6 +62,13 @@ export const validateHandler = (buttonId: string) => {
         case 'next-status':
             radioValue = '';
             statusRadios?.forEach(radio => radio.checked ? radioValue = radio.value : null);
+            if (statusSelect!.value === '4' && radioValue !== '') {
+                mountModal(validatorTexts.conflict);
+                statusRadios?.forEach(radio => radio.checked = false);
+                radioValue = '';
+                errorIndicators(errorsInputs.radioInputs);
+                errorIndicators(errorsInputs.statusSelect);
+            }
             statusSelect!.value === '1' && errorIndicators(errorsInputs['statusSelect']);
             radioValue === '' && errorIndicators(errorsInputs.radioInputs);
             statusSelect!.value !== '1' && radioValue !== '' ?
@@ -71,11 +79,18 @@ export const validateHandler = (buttonId: string) => {
         case 'next-invest':
             checkboxValue = [];
             investCheckboxes?.forEach(checkbox => checkbox.checked ? checkboxValue.push(checkbox.value) : null);
-            investSelect?.value === '1' && errorIndicators(errorsInputs.investSelect)
-            checkboxValue.length <= 0 && errorIndicators(errorsInputs.checkboxInputs)
-            investSelect?.value !== '1' && checkboxValue.length > 0 ?
-                navigate('details') :
+            // investSelect?.value === '1' && errorIndicators(errorsInputs.investSelect)
+            if ((radioValue === ''  && investSelect?.value !== '1') || (radioValue !== '' && investSelect?.value === '1')) {
+                errorIndicators(errorsInputs.investSelect)
+                mountModal(validatorTexts.conflict)
+            }
+            else if ((investSelect?.value !== '1' && checkboxValue.length > 0) || investSelect?.value === '1' ) {
+                navigate('details');
+            }
+            else {
                 mountModal(validatorTexts.invest);
+                errorIndicators(errorsInputs.checkboxInputs);
+            }            
             break;
         case 'next-details':
             let detailsValid = false;

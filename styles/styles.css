@@ -454,7 +454,7 @@ body {
 }
 
 .welcome-section {
-    display: none;
+    display: flex;
 }
 
 .start-section {
@@ -481,7 +481,7 @@ body {
     display: none;
 }
 .dashboard-section{
-    display: flex;
+    display: none;
     width: 100vw;
     height: fit-content;
     flex-direction: column;
