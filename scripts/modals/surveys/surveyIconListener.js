@@ -1,4 +1,4 @@
-import { getSurveys } from "../../../firebaseFunctions/app";
+import { getSurveys } from "../../firebaseFunctions/app";
 import { iconChanger } from "../../theme/iconChanger";
 import { toggleThemeIcon } from "../../theme/themeHandler";
 import { overlay, surveyModal, surveyModalEmail, surveyModalText, surveySubmit } from "../modal";

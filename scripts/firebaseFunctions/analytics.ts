@@ -1,5 +1,5 @@
 import voca from 'voca';
-import { Infos } from "../scripts/data-handlers/filledInfos";
+import { Infos } from "../data-handlers/filledInfos";
 import { getAllSurveys } from "./app";
 /*
 account status options (status):

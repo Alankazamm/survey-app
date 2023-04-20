@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Survey Form">
     
     
     
@@ -12,8 +13,8 @@
 
 
     <title>Survey Form</title>
-  <script type="module" crossorigin src="./assets/index-c1acfb6f.js"></script>
-  <link rel="stylesheet" href="./assets/index-3ac54655.css">
+  <script type="module" crossorigin src="./assets/index-ad284c9c.js"></script>
+  <link rel="stylesheet" href="./assets/index-5f1427ca.css">
 </head>
 
 <body>
@@ -53,7 +54,7 @@
             </div>
             <div class="modal-content" id="result">
                 <span id="reset-modal-icon">
-                    <img src="./assets/spinner-dark-79e91a90.svg" alt="close icon" />
+                    <img src="./assets/spinner-dark.svg" alt="close icon" />
                 </span>
             </div>
 
@@ -108,9 +109,10 @@
                     <label class="input-label" for="status-select">What is the status of your account?</label>
                     <div class="select-div">
                         <select name="status-select" id="status-select">
-                            <option value="1">I have not created an account yet.</option>
+                            <option value="1">-- --</option>
                             <option value="2">My account status is okay.</option>
                             <option value="3">I'm currently having financial issues.</option>
+                            <option value="4">I have not created an account yet.</option>
                         </select>
                         <div class="pointer"></div>
                     </div>
@@ -223,7 +225,8 @@
                 <form class="survey-form">
                     <label class="input-label" for="fullname">Full Name:</label>
                     <input type="text" id="fullname" placeholder="Nasser Toghiri">
-                    <span class="after" id="fullname-after">Invalid name format, name must be at least 2 characters long.</span>
+                    <span class="after" id="fullname-after">Invalid name format, name must be at least 2 characters
+                        long.</span>
                     <label class="input-label" for="email">Email:</label>
                     <input type="text" id="email" placeholder="N.Toghiri@Gmail.com">
                     <span class="after" id="email-after">Invalid email format.</span>
@@ -280,9 +283,40 @@
 
                 </div>
                 <div class="buttons-wrapper">
-                    <button class="btn skip-button">Back to Home</button>
+                    <button class="btn skip-button" >Go to Dashboard</button>
                 </div>
+            </div>
+                
         </section>
+        <section class="page dashboard-section">
+            <span class="icons-wrapper"></span>
+            <div class="content-section">
+                <div class="dashboard">
+                    <div class="dashboard-item">
+                        <canvas id="status-chart"></canvas>
+                    </div>
+                    <div class="dashboard-item">
+                        <canvas id="age-chart"></canvas>
+                    </div>
+
+                    <div class="dashboard-item">
+                        <canvas id="wordcloud-chart"></canvas>
+                    </div>
+
+                    <div class="dashboard-item">
+                        <canvas id="invest-chart" width="300" height="300"></canvas>
+                    </div>
+                    
+                    <div class="dashboard-item">
+                        <canvas id="markets-trhough-time-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons-wrapper">
+                <button class="btn skip-button">Back to Home</button>
+            </div>
+        </section>
+
 
     </main>
 
@@ -295,8 +329,9 @@
     
     
     
-    <!-- <script type="module" src="./scripts/modals/surveys/resetModal.js" ></script> -->
     
+    
+
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </body>

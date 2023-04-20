@@ -1,7 +1,7 @@
 import Chart from 'chart.js/auto';
 import { WordCloudController, WordElement } from 'chartjs-chart-wordcloud';
 import { WordCloudChart } from 'chartjs-chart-wordcloud';
-import { accountStatus, averageMarketperAge, invest, words, investmentByDateData } from '../../firebaseFunctions/analytics';
+import { accountStatus, averageMarketperAge, invest, words, investmentByDateData } from '../firebaseFunctions/analytics';
 export const mountDashboard = () => {
     Chart.register(WordCloudController, WordElement);
     const statusCanvas = document.getElementById('status-chart');

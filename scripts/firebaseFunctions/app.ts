@@ -14,7 +14,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
-import { Infos } from "../scripts/data-handlers/filledInfos";
+import { Infos } from "../data-handlers/filledInfos";
 
 //type Surveys is a JSON object of Infos
 export type Surveys = Infos[];

@@ -1,5 +1,4 @@
-import navigate from "../navigation/navigation";
-import { storeSurvey } from '../../firebaseFunctions/app';
+import { storeSurvey } from '../firebaseFunctions/app';
 import { treatedFormToUpload } from "./treatedFormToUpload";
 
 export interface Infos {

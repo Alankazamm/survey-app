@@ -1,4 +1,4 @@
-import { getSurveys } from "../../../firebaseFunctions/app";
+import { getSurveys } from "../../firebaseFunctions/app";
 import { Infos } from "../../data-handlers/filledInfos";
 import { iconChanger } from "../../theme/iconChanger";
 import { toggleThemeIcon } from "../../theme/themeHandler";

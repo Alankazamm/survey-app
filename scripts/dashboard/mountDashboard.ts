@@ -2,7 +2,7 @@ import Chart from 'chart.js/auto';
 import { WordCloudController, WordElement } from 'chartjs-chart-wordcloud';
 import { WordCloudChart } from 'chartjs-chart-wordcloud';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { accountStatus, averageMarketperAge, invest, words, investmentByDateData } from '../../firebaseFunctions/analytics';
+import { accountStatus, averageMarketperAge, invest, words, investmentByDateData } from '../firebaseFunctions/analytics';
 import { PluginOptionsByType } from 'chart.js/dist/types/index';
 
 interface Word {

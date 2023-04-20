@@ -1,4 +1,4 @@
-import { storeSurvey } from '../../firebaseFunctions/app';
+import { storeSurvey } from '../firebaseFunctions/app';
 import { treatedFormToUpload } from "./treatedFormToUpload";
 // dom manipulation:
 // const infosUl = document.createElement('ul');
