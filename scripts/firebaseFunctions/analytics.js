@@ -255,7 +255,7 @@ const stopwords = ["o", "a", "de", "para", "em", "com", "é", "e", "ou", "que", 
 //create an array bellow with the following structure [ [word, count], [word, count], [word, count] ] where word is a string and count is a number
 const commonWords = [];
 surveys.forEach(survey => {
-    const text = survey.details?.toLocaleLowerCase();
+    const text = survey.details?.toLowerCase();
     if (text) {
         const words = text.split(" ");
         words.forEach(word => {

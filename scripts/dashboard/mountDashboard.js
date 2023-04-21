@@ -213,7 +213,26 @@ export const mountDashboard = () => {
             datasets: investmentByDateDatasets
         },
         options: {
+            maintainAspectRatio: false,
+            aspectRatio: 1.5,
             responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    axis: 'y',
+                    display: true,
+                    type: 'linear',
+                    title: {
+                        display: true,
+                        text: 'Amount of answers',
+                    },
+                    min: 0,
+                    grid: {
+                        display: true,
+                        color: 'rgb(0, 0, 0)'
+                    }
+                },
+            },
             plugins: {
                 legend: {
                     position: 'bottom',

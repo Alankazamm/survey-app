@@ -274,7 +274,7 @@ const stopwords = ["o", "a", "de", "para", "em", "com", "é", "e", "ou", "que", 
 const commonWords: string[] = [];
 
 surveys.forEach(survey => {
-    const text = survey.details?.toLocaleLowerCase();
+    const text = survey.details?.toLowerCase();
     if (text) {
         const words = text.split(" ");
         words.forEach(word => {
