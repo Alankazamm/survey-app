@@ -189,7 +189,11 @@ export const mountDashboard = () => {
             }
         }
     }
-    dates.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+    dates.sort((a, b) => {
+        const [aDay, aMonth, aYear] = a.split('/').map(Number);
+        const [bDay, bMonth, bYear] = b.split('/').map(Number);
+        return new Date(aYear, aMonth - 1, aDay).getTime() - new Date(bYear, bMonth - 1, bDay).getTime();
+    });
     let investmentByDateDatasets = [];
     for (let market in investmentByDateData) {
         let values = [];

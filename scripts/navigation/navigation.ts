@@ -1,3 +1,5 @@
+import { resetInputs } from "../input-listeners/resetInputs";
+
 const pages: HTMLElement[] = [
     document.querySelector('.welcome-section')!,
     document.querySelector('.start-section')!,
@@ -49,6 +51,7 @@ const navigate = (page: string) => {
             sucess.style.display = 'flex';
             break;
         case 'dashboard':
+            resetInputs();
             sucess.style.display = 'none';
             dashboard.style.display = 'flex';
             break;

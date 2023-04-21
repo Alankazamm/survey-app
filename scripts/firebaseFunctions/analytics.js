@@ -259,7 +259,7 @@ surveys.forEach(survey => {
     if (text) {
         const words = text.split(" ");
         words.forEach(word => {
-            if (!stopwords.includes(word) && word.length < 10) {
+            if (!stopwords.includes(word) && word.length < 20) {
                 commonWords.push(word);
             }
         });

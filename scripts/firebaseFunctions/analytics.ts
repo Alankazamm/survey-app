@@ -240,6 +240,7 @@ surveys.forEach(survey => {
                 case AccountStatus.FINANCIAL_ISSUES:
                     invest[Invest.NOT_INVESTED][AccountStatus.FINANCIAL_ISSUES]++;
                     break;
+                
             }
             break;
         case Invest.BANK_MANAGER:
@@ -278,7 +279,7 @@ surveys.forEach(survey => {
     if (text) {
         const words = text.split(" ");
         words.forEach(word => {
-            if (!stopwords.includes(word) && word.length < 10 ) {
+            if (!stopwords.includes(word) && word.length < 20 ) {
                 commonWords.push(word);
             }
         });

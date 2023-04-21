@@ -25,7 +25,7 @@ export const createForm = (infos: Infos) => {
     filledForm.push(infos.name);
     filledForm.push(infos.email);
     filledForm.push(infos.age);
-
+    console.log(infos);
     switch (infos.status) {
         case '2':
             filledForm.push('My account status is okay.');
@@ -35,7 +35,7 @@ export const createForm = (infos: Infos) => {
             break;
         case '4':
             filledForm.push("I have not created an account yet.");
-        default:
+        case '1':
             filledForm.push("Not answered.");
             break;
     }
@@ -87,10 +87,13 @@ export const createForm = (infos: Infos) => {
             case 'exp':
                 arrCheckeds.push('experience with little investment');
                 break;
+            default:
+                arrCheckeds.push('Not answered');
+            
         }
     });
 
-    arrCheckeds.length >0? filledForm.push(arrCheckeds):filledForm.push(['not answered']);
+    arrCheckeds.length >0? filledForm.push(arrCheckeds):null;
     infos.details!.length > 0 ? filledForm.push(infos.details!) : filledForm.push('Not filled');
     //create the date of the survey in string with these format: dd/mm/yyyy hh:mm:ss
     const date = new Date();
@@ -101,7 +104,8 @@ export const createForm = (infos: Infos) => {
     const minutes = date.getMinutes();
     const seconds = date.getSeconds();
     const dateString = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-    const filledWithDate = [...filledForm, dateString];
+    const filledWithDate = filledForm.concat(dateString);
+    console.log(filledWithDate);
     storeSurvey(treatedFormToUpload(filledWithDate));
     const domizedValues: string[] = filledForm.map((item):string => {
         if (!Array.isArray(item)) return `<p>${item}</p>`

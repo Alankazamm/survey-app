@@ -48,11 +48,11 @@ const formHandler = () => {
         name: fullname.value,
         email: email.value,
         age: age.value,
-        status: statusSelect?.value || '',
-        market: radioValue || '',
-        invest: investSelect?.value || '',
+        status: statusSelect?.value ||'1',
+        market: radioValue ,
+        invest: investSelect?.value ,
         resources: checkboxValue,
-        details: detailsTxtArea?.value || '',
+        details: detailsTxtArea?.value ,
     }
     createForm(infos);
     navigate('sucess');
@@ -70,15 +70,7 @@ export const validateHandler = (buttonId: string) => {
                 errorIndicators(errorsInputs.radioInputs);
                 errorIndicators(errorsInputs.statusSelect);
             }
-            else if (statusSelect!.value === '4' && radioValue === '') {
-                navigate('invest');
-            }
-            else if (statusSelect!.value !== '4' && radioValue === '') {
-                radioValue = '';
-                errorIndicators(errorsInputs.radioInputs);
-                mountModal(validatorTexts.status);
-            }
-            else if (statusSelect!.value !== '4' && statusSelect!.value !== '1' && radioValue !== '') {
+            else if ((statusSelect!.value === '4' && radioValue === '')||(statusSelect!.value !== '1')) {
                 navigate('invest');
             }
             else {
