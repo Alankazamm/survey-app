@@ -53,6 +53,7 @@ export const validateHandler = (buttonId) => {
     switch (buttonId) {
         case 'next-status':
             radioValue = '';
+            console.log(statusSelect.value);
             statusRadios?.forEach(radio => radio.checked ? radioValue = radio.value : null);
             if (statusSelect.value === '4' && radioValue !== '') {
                 mountModal(validatorTexts.conflict);
@@ -61,11 +62,22 @@ export const validateHandler = (buttonId) => {
                 errorIndicators(errorsInputs.radioInputs);
                 errorIndicators(errorsInputs.statusSelect);
             }
-            statusSelect.value === '1' && errorIndicators(errorsInputs['statusSelect']);
-            radioValue === '' && errorIndicators(errorsInputs.radioInputs);
-            statusSelect.value !== '1' && radioValue !== '' ?
-                navigate('invest') :
+            else if (statusSelect.value === '4' && radioValue === '') {
+                navigate('invest');
+            }
+            else if (statusSelect.value !== '4' && radioValue === '') {
+                radioValue = '';
+                errorIndicators(errorsInputs.radioInputs);
                 mountModal(validatorTexts.status);
+            }
+            else if (statusSelect.value !== '4' && statusSelect.value !== '1' && radioValue !== '') {
+                navigate('invest');
+            }
+            else {
+                radioValue = '';
+                errorIndicators(errorsInputs.statusSelect);
+                mountModal(validatorTexts.status);
+            }
             break;
         case 'next-invest':
             checkboxValue = [];

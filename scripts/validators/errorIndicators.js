@@ -72,7 +72,6 @@ export const errorIndicators = (input) => {
         case errorsInputs.checkboxInputs:
             checkboxInputs.style.border = errorBorderStyle;
             checkboxInputs.style.borderRadius = '5px';
-            // checkboxInputs!.style.padding = '5px';
             break;
         case errorsInputs.detailsTextArea:
             detailsTxtArea.style.border = errorBorderStyle;
