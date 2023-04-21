@@ -4,9 +4,8 @@ import { treatedFormToUpload } from "./treatedFormToUpload";
 // const infosUl = document.createElement('ul');
 // const infoItem = document.createElement('li');
 const itemDivs = document.querySelectorAll('.infoItem');
-let filledForm = [];
 export const createForm = (infos) => {
-    filledForm = [];
+    let filledForm = [];
     filledForm.push(infos.name);
     filledForm.push(infos.email);
     filledForm.push(infos.age);
@@ -20,6 +19,7 @@ export const createForm = (infos) => {
             break;
         case '4':
             filledForm.push("I have not created an account yet.");
+            break;
         case '1':
             filledForm.push("Not answered.");
             break;
@@ -72,9 +72,10 @@ export const createForm = (infos) => {
                 break;
             default:
                 arrCheckeds.push('Not answered');
+                break;
         }
     });
-    arrCheckeds.length > 0 ? filledForm.push(arrCheckeds) : null;
+    arrCheckeds.length > 0 ? filledForm.push(arrCheckeds) : filledForm.push(['Not answered']);
     infos.details.length > 0 ? filledForm.push(infos.details) : filledForm.push('Not filled');
     //create the date of the survey in string with these format: dd/mm/yyyy hh:mm:ss
     const date = new Date();

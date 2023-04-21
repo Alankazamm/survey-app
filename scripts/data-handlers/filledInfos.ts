@@ -18,10 +18,9 @@ export interface Infos {
 // const infoItem = document.createElement('li');
 const itemDivs:NodeListOf<HTMLElement> = document.querySelectorAll('.infoItem');
 
-let filledForm: Array<string | string[]> = [];
 
 export const createForm = (infos: Infos) => {
-    filledForm = [];
+    let filledForm: Array<string | string[]> = [];
     filledForm.push(infos.name);
     filledForm.push(infos.email);
     filledForm.push(infos.age);
@@ -35,6 +34,7 @@ export const createForm = (infos: Infos) => {
             break;
         case '4':
             filledForm.push("I have not created an account yet.");
+            break;
         case '1':
             filledForm.push("Not answered.");
             break;
@@ -89,11 +89,12 @@ export const createForm = (infos: Infos) => {
                 break;
             default:
                 arrCheckeds.push('Not answered');
+                break;
             
         }
     });
 
-    arrCheckeds.length >0? filledForm.push(arrCheckeds):null;
+    arrCheckeds.length > 0? filledForm.push(arrCheckeds):filledForm.push(['Not answered'])
     infos.details!.length > 0 ? filledForm.push(infos.details!) : filledForm.push('Not filled');
     //create the date of the survey in string with these format: dd/mm/yyyy hh:mm:ss
     const date = new Date();
