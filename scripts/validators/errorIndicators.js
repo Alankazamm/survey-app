@@ -15,23 +15,38 @@ export const checkboxInputs = document.getElementById('checkboxInputs');
 export const radioInputs = document.getElementById('radioInputs');
 //create an after element to say what is wrong for email input
 export const createAfterElement = (input) => {
-    const ageAfter = document.getElementById('age-after');
-    const emailAfter = document.getElementById('email-after');
-    const fullnameAfter = document.getElementById('fullname-after');
     switch (input) {
         case errorsInputs.emailInput:
+            document.getElementById('email-after')?.remove();
+            const emailAfter = document.createElement('span');
+            emailAfter.setAttribute('id', 'email-after');
+            emailAfter.classList.add('after');
+            document.getElementById('email').after(emailAfter);
+            emailAfter.innerHTML = 'invalid email';
             emailAfter.style.display = 'block';
             setTimeout(() => {
                 emailAfter.style.display = 'none';
             }, 3000);
             break;
         case errorsInputs.fullnameInput:
+            document.getElementById('fullname-after')?.remove();
+            const fullnameAfter = document.createElement('span');
+            fullnameAfter.setAttribute('id', 'fullname-after');
+            fullnameAfter.classList.add('after');
+            fullnameAfter.innerHTML = 'invalid name format';
+            document.getElementById('fullname').after(fullnameAfter);
             fullnameAfter.style.display = 'block';
             setTimeout(() => {
                 fullnameAfter.style.display = 'none';
             }, 3000);
             break;
         case errorsInputs.ageInput:
+            document.getElementById('age-after')?.remove();
+            const ageAfter = document.createElement('span');
+            ageAfter.setAttribute('id', 'age-after');
+            ageAfter.classList.add('after');
+            ageAfter.innerHTML = 'invalid age, must be between 18 and 99';
+            document.getElementById('age').after(ageAfter);
             ageAfter.style.display = 'block';
             setTimeout(() => {
                 ageAfter.style.display = 'none';

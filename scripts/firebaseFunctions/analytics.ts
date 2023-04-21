@@ -1,4 +1,3 @@
-import voca from 'voca';
 import { Infos } from "../data-handlers/filledInfos";
 import { getAllSurveys } from "./app";
 /*
